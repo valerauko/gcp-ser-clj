@@ -8,8 +8,9 @@
   If no options are provided, it falls back to application-wide GCP defaults.
 
   Currently the following options are recognized (all optional):
+
   | key | description |
-  | -|-|
+  | --- | --- |
   | `project-name` | The GCP project name to use. |
   | `client` | A ReportErrorsServiceClient instance |
   | `service-name` | The Service to categorize the reported error under |
