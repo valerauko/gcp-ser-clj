@@ -1,4 +1,7 @@
 (ns gcp-ser-clj.gcp
+  "Clojure wrapper utility around the Google Cloud Error Reporting Java library.
+
+  Consider all functions in this namespace private and subject to change."
   (:require [clojure.tools.logging :as log])
   (:import [com.google.api.gax.rpc
             ApiException]

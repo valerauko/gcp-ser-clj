@@ -1,4 +1,9 @@
-# GCP Simple Error Reporting for Clojure
+# GCP Simple Error Reporting 🍻 for Clojure
+
+>[ser](https://en.wiktionary.org/wiki/ser#Hungarian)
+>Noun, Hungarian
+>[ˈʃɛr] (countable and uncountable, plural serek)
+>(archaic, dialectal, humorous) Alternative form of sör (“beer”).
 
 A Clojure library trying to make reporting errors to Google Cloud's Error Reporting system (Stackdriver) simpler.
 
