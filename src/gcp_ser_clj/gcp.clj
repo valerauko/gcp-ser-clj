@@ -2,6 +2,8 @@
   (:require [clojure.tools.logging :as log])
   (:import [com.google.api.gax.rpc
             ApiException]
+           [com.google.auth.oauth2
+            ServiceAccountCredentials]
            [com.google.cloud.errorreporting.v1beta1
             ReportErrorsServiceClient]
            [com.google.devtools.clouderrorreporting.v1beta1
@@ -50,17 +52,25 @@
       (.setMessage (string-trace exception))
       (.build)))
 
+(defn project-from-config
+  []
+  (let [creds (ServiceAccountCredentials/getApplicationDefault)]
+    (.getProjectId creds)))
+
 (defn report
-  [exception {:keys [project-name client] :as opts}]
-  (let [project-id (format "projects/%s" (name project-name))
-        event-obj (ex->event exception opts)
-        api-call (fn api-call [^ReportErrorsServiceClient c]
-                   (try
-                     (.reportErrorEvent c project-id event-obj)
-                     (log/info "Reported error to GCP" exception)
-                     (catch ApiException e
-                       (log/error "Failed to report error to GCP" e))))]
-    (if client
-      (api-call client)
-      (with-open [ephemeral-client (ReportErrorsServiceClient/create)]
-        (api-call ephemeral-client)))))
+  ([exception]
+   (report exception {}))
+  ([exception {:keys [project-name client] :as opts}]
+   (let [project-id (format "projects/%s" (name (or project-name
+                                                    (project-from-config))))
+         event-obj (ex->event exception opts)
+         api-call (fn api-call [^ReportErrorsServiceClient c]
+                    (try
+                      (.reportErrorEvent c project-id event-obj)
+                      (log/info "Reported error to GCP" exception)
+                      (catch ApiException e
+                        (log/error "Failed to report error to GCP" e))))]
+     (if client
+       (api-call client)
+       (with-open [ephemeral-client (ReportErrorsServiceClient/create)]
+         (api-call ephemeral-client))))))
