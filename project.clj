@@ -6,5 +6,6 @@
   :dependencies [[org.clojure/tools.logging "1.1.0"]
                  [com.google.cloud/google-cloud-errorreporting "0.120.36-beta"]]
   :repl-options {:init-ns gcp-ser-clj.core}
+  :deploy-repositories [["github" "https://maven.pkg.github.com/valerauko/gcp-ser-clj"]]
   :profiles {:dev {:dependencies
                    [[org.clojure/clojure "1.10.3"]]}})
