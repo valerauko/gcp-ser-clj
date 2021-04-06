@@ -14,6 +14,8 @@ A Clojure library trying to make reporting errors to Google Cloud's Error Report
 
 ## Usage
 
+Check the [documentation on cljdocs](https://cljdoc.org/d/gcp-ser-clj/gcp-ser-clj/CURRENT) for more details about available options.
+
 ### Using `report`
 
 You can use the `report` directly to easily report an error to GCP.
