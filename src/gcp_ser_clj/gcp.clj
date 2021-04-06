@@ -28,9 +28,9 @@
     (.printStackTrace ex prn-w)
     (.toString str-w)))
 
-(defn ex->loc
+(defn ^SourceLocation ex->loc
   [^Throwable exception]
-  (let [frame (-> exception (.getStackTrace) (nth 0))]
+  (let [^StackTraceElement frame (-> exception (.getStackTrace) (nth 0))]
     (println frame)
     (-> (SourceLocation/newBuilder)
         (.setFilePath (.getFileName frame))
@@ -54,7 +54,8 @@
 
 (defn project-from-config
   []
-  (let [creds (ServiceAccountCredentials/getApplicationDefault)]
+  (let [^ServiceAccountCredentials creds
+        (ServiceAccountCredentials/getApplicationDefault)]
     (.getProjectId creds)))
 
 (defn report
