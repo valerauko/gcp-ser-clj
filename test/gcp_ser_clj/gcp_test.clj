@@ -20,3 +20,14 @@
           result (svc-ctx opts)]
       (is (= "" (.getService result)))
       (is (= "" (.getVersion result))))))
+
+(deftest report-options-test
+  (with-redefs [gcp-ser-clj.gcp/ex->event (constantly nil)
+                gcp-ser-clj.gcp/api-call (fn [_ project _] project)]
+    (testing ":project-name"
+      (testing "when provided :project-name option"
+        (is (= (report nil {:project-name "foo"}) "projects/foo")))
+      (testing "without :project-name option"
+        (with-redefs [gcp-ser-clj.gcp/project-from-config (constantly "bar")]
+          (is (= (report nil) "projects/bar")
+              "uses the project id from the application-wide config"))))))
