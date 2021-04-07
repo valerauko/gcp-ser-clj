@@ -33,7 +33,6 @@
 (defn ^SourceLocation ex->loc
   [^Throwable exception]
   (let [^StackTraceElement frame (-> exception (.getStackTrace) (nth 0))]
-    (println frame)
     (-> (SourceLocation/newBuilder)
         (.setFilePath (.getFileName frame))
         (.setLineNumber (.getLineNumber frame))
