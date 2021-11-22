@@ -26,8 +26,10 @@
                 gcp-ser-clj.gcp/api-call (fn [_ project _] project)]
     (testing ":project-name"
       (testing "when provided :project-name option"
-        (is (= (report nil {:project-name "foo"}) "projects/foo")))
+        (is (= (report nil {:client "dummy" :project-name "foo"})
+               "projects/foo")))
       (testing "without :project-name option"
         (with-redefs [gcp-ser-clj.gcp/project-from-config (constantly "bar")]
-          (is (= (report nil) "projects/bar")
+          (is (= (report nil {:client "dummy"})
+                 "projects/bar")
               "uses the project id from the application-wide config"))))))
