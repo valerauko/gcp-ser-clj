@@ -21,13 +21,9 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Install Leiningen
-        run: |
-          set -ex;
-          echo $PATH;
-          mkdir -p ~/.local/bin;
-          curl -o ~/.local/bin/lein https://raw.githubusercontent.com/technomancy/leiningen/2.9.5/bin/lein;
-          chmod a+x ~/.local/bin/lein;
+      - uses: delaguardo/setup-clojure@3.5
+        with:
+          lein: 2.9.5
       - uses: actions/setup-java@v2
         with:
           java-version: "${{ matrix.jdk }}"
