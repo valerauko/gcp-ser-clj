@@ -16,6 +16,8 @@ A Clojure library trying to make reporting errors to Google Cloud's Error Report
 
 Check the [documentation on cljdoc](https://cljdoc.org/d/gcp-ser-clj/gcp-ser-clj/CURRENT) for more details about available options.
 
+Unless running on Google Compute Engine, you'll probably need to set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable to point to your credentials file (usually a proto.json).
+
 ### Using `report`
 
 You can use the `report` directly to easily report an error to GCP.
