@@ -24,8 +24,8 @@ jobs:
       - name: Install Leiningen
         run: |
           set -ex;
-          curl -o /usr/bin/lein https://raw.githubusercontent.com/technomancy/leiningen/2.9.5/bin/lein;
-          chmod a+x /usr/bin/lein;
+          curl -o ~/.local/bin/lein https://raw.githubusercontent.com/technomancy/leiningen/2.9.5/bin/lein;
+          chmod a+x ~/.local/bin/lein;
       - uses: actions/setup-java@v2
         with:
           java-version: "${{ matrix.jdk }}"
