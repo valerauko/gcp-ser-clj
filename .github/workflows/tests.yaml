@@ -1,0 +1,35 @@
+on:
+  pull_request:
+  push:
+
+jobs:
+  tests:
+    strategy:
+      matrix:
+        jdk:
+          - 8
+          - 11
+          - 17
+        clojure:
+          - 1.9.0
+          - 1.10.0
+          - 1.10.1
+          - 1.10.2
+          - 1.10.3
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Install Leiningen
+        run: |
+          set -ex;
+          curl -o /usr/bin/lein https://raw.githubusercontent.com/technomancy/leiningen/2.9.5/bin/lein;
+          chmod a+x /usr/bin/lein;
+      - uses: actions/setup-java@v2
+        with:
+          java-version: "${{ matrix.jdk }}"
+          distribution: zulu
+          cache: maven
+      - name: Run tests
+        run: lein with-profile clj${{ matrix.clojure }} test
