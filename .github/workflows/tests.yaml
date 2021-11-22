@@ -24,6 +24,8 @@ jobs:
       - name: Install Leiningen
         run: |
           set -ex;
+          echo $PATH;
+          mkdir -p ~/.local/bin;
           curl -o ~/.local/bin/lein https://raw.githubusercontent.com/technomancy/leiningen/2.9.5/bin/lein;
           chmod a+x ~/.local/bin/lein;
       - uses: actions/setup-java@v2
