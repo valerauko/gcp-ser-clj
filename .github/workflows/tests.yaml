@@ -1,3 +1,5 @@
+name: Automation
+
 on:
   pull_request:
   push:
