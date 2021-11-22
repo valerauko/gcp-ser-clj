@@ -33,7 +33,6 @@
 (defn ^SourceLocation ex->loc
   [^Throwable exception]
   (let [^StackTraceElement frame (-> exception (.getStackTrace) (nth 0))]
-    (println frame)
     (-> (SourceLocation/newBuilder)
         (.setFilePath (.getFileName frame))
         (.setLineNumber (.getLineNumber frame))
@@ -60,20 +59,23 @@
         (ServiceAccountCredentials/getApplicationDefault)]
     (.getProjectId creds)))
 
+(defn api-call
+  [^ReportErrorsServiceClient client
+   ^String project-id
+   ^ReportedErrorEvent event-obj]
+  (try
+    (.reportErrorEvent client project-id event-obj)
+    (catch ApiException e
+      (log/error "Failed to report error to GCP" e))))
+
 (defn report
   ([exception]
    (report exception {}))
   ([exception {:keys [project-name client] :as opts}]
    (let [project-id (format "projects/%s" (name (or project-name
                                                     (project-from-config))))
-         event-obj (ex->event exception opts)
-         api-call (fn api-call [^ReportErrorsServiceClient c]
-                    (try
-                      (.reportErrorEvent c project-id event-obj)
-                      (log/info "Reported error to GCP" exception)
-                      (catch ApiException e
-                        (log/error "Failed to report error to GCP" e))))]
+         event-obj (ex->event exception opts)]
      (if client
-       (api-call client)
+       (api-call client project-id event-obj)
        (with-open [ephemeral-client (ReportErrorsServiceClient/create)]
-         (api-call ephemeral-client))))))
+         (api-call ephemeral-client project-id event-obj))))))
