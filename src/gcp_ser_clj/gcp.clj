@@ -7,11 +7,10 @@
             ApiException]
            [com.google.auth.oauth2
             ServiceAccountCredentials]
-           [com.google.cloud.errorreporting.v1beta1
-            ReportErrorsServiceClient]
            [com.google.devtools.clouderrorreporting.v1beta1
             ErrorContext
             ReportedErrorEvent
+            ReportErrorsServiceClient
             ServiceContext
             SourceLocation]))
 
