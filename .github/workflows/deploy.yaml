@@ -17,7 +17,4 @@ jobs:
       # - uses: delaguardo/setup-clojure@9.5
       #   with:
       #     lein: 2.9.5
-      - run: |
-          cat <<EOF
-          ${{ toJson(github) }}
-          EOF
+      - run: echo "Tag: ${{ github.ref_name }}"
