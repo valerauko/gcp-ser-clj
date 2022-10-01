@@ -6,12 +6,12 @@
   :dependencies [[org.clojure/tools.logging "1.1.0"]
                  [com.google.cloud/google-cloud-errorreporting "0.124.12-beta"]]
   :repl-options {:init-ns gcp-ser-clj.core}
-  :repositories [["github" {:url "https://maven.pkg.github.com/valerauko/gcp-ser-clj"
-                            :username "valerauko"
-                            :password :env/GITHUB_TOKEN}]
-                 ["clojars" {:url "https://repo.clojars.org/"
-                             :username "valerauko"
-                             :password :env/CLOJARS_TOKEN}]]
+  :repositories {:github {:url "https://maven.pkg.github.com/valerauko/gcp-ser-clj"
+                          :username "valerauko"
+                          :password :env/github_token}
+                 :clojars {:url "https://repo.clojars.org/"
+                           :username "valerauko"
+                           :password :env/clojars_token}}
   :profiles {:dev {:dependencies
                    [[org.clojure/clojure "1.10.3"]]}
              :clj1.9.0 {:dependencies
