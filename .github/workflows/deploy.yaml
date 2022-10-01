@@ -1,0 +1,20 @@
+name: Release automation
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  check-for-upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      # - uses: actions/setup-java@v3
+      #   with:
+      #     java-version: 17
+      #     distribution: temurin
+      # - uses: delaguardo/setup-clojure@9.5
+      #   with:
+      #     lein: 2.9.5
+      - run: echo ${{ toJson(github) }}
