@@ -1,12 +1,9 @@
 name: Release automation
 
 on:
-  push:
-    branches:
-      - feature/automate-release
-  # release:
-  #   types:
-  #     - edited
+  release:
+    types:
+      - published
 
 jobs:
   github:
