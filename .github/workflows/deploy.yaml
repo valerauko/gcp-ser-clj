@@ -22,6 +22,9 @@ jobs:
         with:
           lein: 2.9.5
       - run: lein deploy github
+        env:
+          GITHUB_USER: valerauko
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   clojars:
     runs-on: ubuntu-latest
@@ -36,3 +39,6 @@ jobs:
         with:
           lein: 2.9.5
       - run: lein deploy clojars
+        env:
+          CLOJARS_USER: valerauko
+          CLOJARS_TOKEN: ${{ secrets.CLOJARS_TOKEN }}

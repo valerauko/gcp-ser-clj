@@ -7,10 +7,10 @@
                  [com.google.cloud/google-cloud-errorreporting "0.124.12-beta"]]
   :repl-options {:init-ns gcp-ser-clj.core}
   :deploy-repositories {"github" {:url "https://maven.pkg.github.com/valerauko/gcp-ser-clj"
-                                  :username "valerauko"
+                                  :username :env/github_user
                                   :password :env/github_token}
                         "clojars" {:url "https://repo.clojars.org/"
-                                   :username "valerauko"
+                                   :username :env/clojars_user
                                    :password :env/clojars_token}}
   :profiles {:dev {:dependencies
                    [[org.clojure/clojure "1.10.3"]]}
