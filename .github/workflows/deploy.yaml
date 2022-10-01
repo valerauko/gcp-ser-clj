@@ -18,6 +18,6 @@ jobs:
       #   with:
       #     lein: 2.9.5
       - run: |
-        cat <<EOF
+          cat <<EOF
           ${{ toJson(github) }}
-        EOF
+          EOF
