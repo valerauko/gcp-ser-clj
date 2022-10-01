@@ -21,7 +21,7 @@ jobs:
       - uses: delaguardo/setup-clojure@9.5
         with:
           lein: 2.9.5
-      - run: cat setttings.xml
+      - run: cat ~/.m2/setttings.xml
 
   clojars:
     runs-on: ubuntu-latest
