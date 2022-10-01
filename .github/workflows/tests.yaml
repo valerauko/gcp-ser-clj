@@ -2,6 +2,7 @@ name: Test automation
 
 on:
   push:
+    branches:
 
 jobs:
   tests:
