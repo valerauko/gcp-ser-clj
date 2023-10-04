@@ -4,7 +4,7 @@
   <groupId>gcp-ser-clj</groupId>
   <artifactId>gcp-ser-clj</artifactId>
   <packaging>jar</packaging>
-  <version>0.8.1</version>
+  <version>0.8.2</version>
   <name>gcp-ser-clj</name>
   <description>A Clojure library trying to make reporting errors to Google Cloud's Error Reporting system (Stackdriver) simpler.</description>
   <url>https://github.com/valerauko/gcp-ser-clj</url>
@@ -66,7 +66,7 @@
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>tools.logging</artifactId>
-      <version>1.1.0</version>
+      <version>1.2.4</version>
     </dependency>
     <dependency>
       <groupId>com.google.cloud</groupId>
